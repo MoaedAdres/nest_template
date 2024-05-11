@@ -1,34 +1,52 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { CoffeService } from './coffe.service';
 import { CreateCoffeDto } from './dto/create-coffe.dto';
 import { UpdateCoffeDto } from './dto/update-coffe.dto';
+import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
 
 @Controller('coffe')
 export class CoffeController {
   constructor(private readonly coffeService: CoffeService) {}
 
   @Post()
-  create(@Body() createCoffeDto: CreateCoffeDto) {
-    return this.coffeService.create(createCoffeDto);
+  create(
+    @Body() createCoffeDto: CreateCoffeDto,
+    @Query('isRecomended') isRecomended: boolean,
+  ) {
+    return this.coffeService.create(createCoffeDto, isRecomended);
   }
 
   @Get()
-  findAll() {
-    return this.coffeService.findAll();
+  findAll(@Query() paginationQuery: PaginationQueryDto) {
+    return this.coffeService.findAll(paginationQuery);
   }
 
   @Get(':id')
   findOne(@Param('id') id: number) {
+    console.log(typeof id);
     return this.coffeService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCoffeDto: UpdateCoffeDto) {
-    return this.coffeService.update(+id, updateCoffeDto);
+  update(
+    @Param('id') id: number,
+    @Body() updateCoffeDto: UpdateCoffeDto,
+    @Query('isRecomended') isRecomended: boolean,
+  ) {
+    return this.coffeService.update(id, updateCoffeDto, isRecomended);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.coffeService.remove(+id);
+  remove(@Param('id') id: number) {
+    return this.coffeService.remove(id);
   }
 }
