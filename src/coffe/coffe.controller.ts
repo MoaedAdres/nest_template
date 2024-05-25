@@ -13,14 +13,13 @@ import { CreateCoffeDto } from './dto/create-coffe.dto';
 import { UpdateCoffeDto } from './dto/update-coffe.dto';
 import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
 import { ConfigService } from '@nestjs/config';
-
 @Controller('coffe')
 export class CoffeController {
   constructor(
     private readonly coffeService: CoffeService,
     readonly configService: ConfigService,
   ) {
-    console.log(configService.get('ENV_TYPE'));
+    console.log('type', configService.get('ENV_TYPE'));
   }
 
   @Post()

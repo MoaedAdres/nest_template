@@ -11,10 +11,11 @@ import { ConfigModule } from '@nestjs/config';
     TypeOrmModule.forRoot(dataSourceOptions),
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath:
-        process.env.NODE_ENV == 'development'
-          ? '.env.development'
-          : '.env.production',
+      // it dosen't really matter if we specify the path here if we previoulsy set the path in dot.config earlier(like in the data-source)
+      // envFilePath:
+      //   process.env.NODE_ENV == 'development'
+      //     ? '.env.development'
+      //     : '.env.production',
     }),
   ],
   controllers: [AppController],
