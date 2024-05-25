@@ -12,7 +12,7 @@ export class Coffe {
   @PrimaryGeneratedColumn()
   id: number;
   @Column({ nullable: true })
-  title: string;
+  name: string;
   @Column()
   brand: string;
   @Column({ default: 0 })
