@@ -20,7 +20,7 @@ export class CoffeController {
     private readonly coffeService: CoffeService,
     readonly configService: ConfigService,
   ) {
-    console.log(configService.get('DATABASE_NAME'));
+    console.log(configService.get('ENV_TYPE'));
   }
 
   @Post()

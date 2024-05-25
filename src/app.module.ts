@@ -9,7 +9,13 @@ import { ConfigModule } from '@nestjs/config';
   imports: [
     CoffeModule,
     TypeOrmModule.forRoot(dataSourceOptions),
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath:
+        process.env.NODE_ENV == 'development'
+          ? '.env.development'
+          : '.env.production',
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
