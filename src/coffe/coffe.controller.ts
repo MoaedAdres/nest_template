@@ -19,7 +19,7 @@ export class CoffeController {
     private readonly coffeService: CoffeService,
     readonly configService: ConfigService,
   ) {
-    console.log('type', configService.get('ENV_TYPE'));
+    console.log('type', configService.get('JUST_PROD'));
   }
 
   @Post()
