@@ -34,6 +34,7 @@ export class CoffeService {
     return this.coffeRepository.find({
       relations: ['flavors'],
       skip: offset,
+
       take: limit,
     });
   }
